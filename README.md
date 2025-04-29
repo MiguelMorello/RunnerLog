@@ -15,11 +15,7 @@
 - [Django](https://www.djangoproject.com/)
 - HTML & CSS (using Django Templates)
 
-## Project Structure (Basic)
-runnerlog/
-├── manage.py
-├── runnerlog/         # Django project settings
-└── logs/              # Your app with CRUD functionality
+
 
 
 

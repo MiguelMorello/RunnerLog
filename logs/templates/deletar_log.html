@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deletar Log</title>
+</head>
+<body>
+    <h1>Tem certeza que deseja excluir o log de corrida?</h1>
+    
+    <p>Distância: {{ log.distancia }} km</p>
+    <p>Tempo: {{ log.tempo }}</p>
+    <p>Ritmo: {{ log.ritmo }}</p>
+    <p>Observações: {{ log.observacoes|default:"Nenhuma" }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sim, excluir</button>
+    </form>
+    
+    <a href="{% url 'lista_logs' %}">Cancelar</a>
+</body>
+</html>

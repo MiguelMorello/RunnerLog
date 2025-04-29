@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Seus Logs de Corrida</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    a.button {
+      display: inline-block;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    a.button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Meus Logs de Corrida</h1>
+
+  <a href="{% url 'adicionar_log' %}" class="button">Adicionar Novo Log</a>
+
+  {% if logs %}
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Distância (km)</th>
+          <th>Tempo (min)</th>
+          <th>Ritmo (min/km)</th>
+          <th>Observações</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in logs %}
+          <tr>
+            <td>{{ log.date|date:"d/m/Y H:i" }}</td>
+            <td>{{ log.distancia }}</td>
+            <td>{{ log.tempo }}</td>
+            <td>{{ log.ritmo }}</td>
+            <td>{{ log.observacoes|default:"-" }}</td>
+            <td>
+              <a href="{% url 'editar_log' log.id %}">Editar</a> |
+              <a href="{% url 'deletar_log' log.id %}">Excluir</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Você ainda não registrou nenhum log de corrida.</p>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Log de Corrida</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Log de Corrida</h2>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <label for="distancia">Distância (em km):</label>
+            <input type="text" id="distancia" name="distancia" value="{{ log.distancia }}" required><br><br>
+
+            <label for="tempo">Tempo (em minutos):</label>
+            <input type="text" id="tempo" name="tempo" value="{{ log.tempo }}" required><br><br>
+
+            <label for="ritmo">Ritmo (min/km):</label>
+            <input type="text" id="ritmo" name="ritmo" value="{{ log.ritmo }}" required><br><br>
+
+            <label for="observacoes">Observações:</label>
+            <textarea id="observacoes" name="observacoes">{{ log.observacoes }}</textarea><br><br>
+
+            <button type="submit">Salvar Alterações</button>
+        </form>
+        <a href="{% url 'lista_logs' %}">Voltar para a lista de logs</a>
+    </div>
+</body>
+</html>
